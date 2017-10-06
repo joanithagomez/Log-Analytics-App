@@ -1,0 +1,9 @@
+
+.side-c{
+    display: inline-block;
+    text-align: center;
+    width: 15%;
+    height: 900px; 
+    background-color: slategray;
+    color: white;
+}
