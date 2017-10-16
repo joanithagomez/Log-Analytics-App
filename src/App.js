@@ -1,16 +1,28 @@
 import React, { Component } from "react";
+import { Redirect } from 'react-router'
 import "./App.css";
 import Header from "./Header";
-import Sidebar from "./Sidebar";
-import Content from "./Content";
+import ContentRow from "./ContentRow";
 
-class App extends Component{
+
+
+class App extends Component {
+    constructor(props) {
+        super(props);
+        // this.check = this.check.bind(this);        
+    }
+
     render() {
-        return (
+        console.log("login", this.props.login);
+        
+        if (!this.props.login) {
+           return <Redirect to ="/login"/>            
+        }
+        else
+            return (
             <div className="app">
                 <Header />
-                <Sidebar />
-                <Content />
+                <ContentRow />    
             </div>    
         );
     }

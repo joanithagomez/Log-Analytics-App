@@ -14,7 +14,7 @@ class Content extends Component{
         return (
             <div className="content">
                 <Switch>
-                    <Route exact path='/' component={Dashboard} />          
+                    <Route exact path='/dboard' component={Dashboard} />          
                     <Route path='/erroranalysis' component={ErrorAnalysis} />
                     <Route path='/usageanalysis' component={UsageAnalysis} />
                 </Switch>    

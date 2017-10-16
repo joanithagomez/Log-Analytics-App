@@ -1,0 +1,21 @@
+.heading-c{
+    position: relative;
+    float: left;
+    width: 100%;
+    background-color: #fff;
+    
+}
+.container{
+    position: relative;
+    margin: 1%;
+}
+
+.graph-c{
+    position: absolute;
+    top: 130px;
+    width: 60%;
+    min-height: 60vh;
+    border-radius: 18px;    
+    /* padding : 1%; */
+    background-color: white;
+}

@@ -71,12 +71,13 @@ input {
   font-size: 1em;
   color: white;
   min-width: 40%;
-  border-radius: 45px;
+  /* border-radius: 45px; */
   width: auto;
   height: 50px;
-  background: linear-gradient( hsl(166, 100%, 42%), hsl(152, 100%, 42%) );
-  box-shadow: lightgrey 0px 2px 2px 2px;
-  transition: background-color 0s ease-in;
+  background-color: blue;
+  /* background: linear-gradient( hsl(166, 100%, 42%), hsl(152, 100%, 42%) ); */
+  /* box-shadow: lightgrey 0px 2px 2px 2px; */
+  /* transition: background-color 0s ease-in; */
   user-select: none;
 }
 
@@ -84,9 +85,14 @@ input {
   position: relative;
   top: 3px;
   cursor: pointer;
-  box-shadow: lightgrey 0px 2px 2px 3px;
 
-}  .btn:active {
+  /* box-shadow: lightgrey 0px 2px 2px 3px; */
+  /* background: hsl(150, 100%, 35%); */
+  
+
+} 
+.btn:active {
   position: relative;
   top: 3px;
+  /* background-color: hsl(151, 48%, 20%); */
 }

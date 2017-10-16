@@ -1,9 +1,20 @@
 
 .side-c{
-    display: inline-block;
     text-align: center;
     width: 15%;
-    height: 900px; 
-    background-color: slategray;
-    color: white;
+    float: left;
+    height: 100vh; 
+    background-color: #E9E9E9;
+    color: black;
+}
+
+li {
+    padding: 10%;
+    border-bottom: 1px solid #ccc;
+    list-style: none;
+}
+
+li a {
+    text-decoration: none;
+    color: black;
 }

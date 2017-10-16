@@ -6,7 +6,10 @@ class Header extends Component{
         return(
             <div className="title-bar">
                 <div className="logo">LOGO</div>
-                <div className= "about-us">About Us</div>
+                <div className="nav">
+                <p className="team">Team</p>
+                <p className="colophon">Colophon</p>
+                </div>    
             </div>
         );
     }

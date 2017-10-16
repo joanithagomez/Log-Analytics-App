@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import "./Login.css";
-
+import { Route } from "react-router-dom";
+ import App from './App';
+ import { Link } from "react-router-dom";
+ 
 
 class Login extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -12,7 +14,6 @@ class Login extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
-    
   }
 
   handleChange(event) {
@@ -24,9 +25,14 @@ class Login extends Component {
 
   handleClick(event) {
     console.log("Username: " + this.state.username);
-    this.setState({
-
-    })
+    let handleLogin = this.props.handleLogin;
+    handleLogin(() => {
+      this.props.history.push("/");
+    });
+    
+    // console.log(this.props.router.push("/dboard"));
+    // this.props.history.push('/dboard');
+    // <Link to='/dboard'> </Link>
   }
 
   render() {
@@ -52,7 +58,7 @@ class Login extends Component {
               onChange={this.handleChange} type="text" autoComplete="on" />
             </div>
             <div className="btn-c">
-              <div className="btn" onClick={this.handleClick} >Sign in</div>
+              <div className="btn" onClick = {this.handleClick} >Sign in</div>
             </div>
           </div>
         </div>
