@@ -3,6 +3,8 @@ import "./Login.css";
 import { Route } from "react-router-dom";
  import App from './App';
  import { Link } from "react-router-dom";
+ import firebase from 'firebase';
+ import firebaseApp from "./FirebaseApp";
  
 
 class Login extends Component {
@@ -25,10 +27,8 @@ class Login extends Component {
 
   handleClick(event) {
     console.log("Username: " + this.state.username);
-    let handleLogin = this.props.handleLogin;
-    handleLogin(() => {
-      this.props.history.push("/");
-    });
+    var provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signInWithRedirect(provider);
     
     // console.log(this.props.router.push("/dboard"));
     // this.props.history.push('/dboard');
@@ -58,7 +58,7 @@ class Login extends Component {
               onChange={this.handleChange} type="text" autoComplete="on" />
             </div>
             <div className="btn-c">
-              <div className="btn" onClick = {this.handleClick} >Sign in</div>
+              <div className="btn" onClick = {this.handleClick} >Sign in with Google</div>
             </div>
           </div>
         </div>

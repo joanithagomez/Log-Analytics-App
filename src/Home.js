@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import { BrowserRouter, Redirect } from "react-router-dom";
 import { Route } from "react-router-dom";
+import {withRouter} from "react-router-dom";
 import { Switch } from "react-router-dom";
 import Login from './Login';
 import App from './App';
+import firebase from 'firebase';
+import firebaseApp from "./FirebaseApp";
 
 class Home extends Component {
     constructor(props) {
@@ -12,16 +15,39 @@ class Home extends Component {
             loggedIn: false,
             name: "foo"
         };
-        this.handleLogIn = this.handleLogIn.bind(this);        
+
+    }    
+
+    componentDidMount() {
+        var self = this;
+        firebaseApp.auth().getRedirectResult().then(function(result) {
+            if (result.credential) {
+              // This gives you a Google Access Token. You can use it to access the Google API.
+              var token = result.credential.accessToken;
+            }
+            // The signed-in user info.
+            var user = result.user;
+            console.log("Logged in User: ", user.displayName);    
+            
+            self.setState({
+                loggedIn: true,
+            }, function () {
+                self.props.history.push("/");
+            }
+            );
+          }).catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // The email of the user's account used.
+            var email = error.email;
+            // The firebase.auth.AuthCredential type that was used.
+            var credential = error.credential;
+              
+          });
     }
 
-    
-    handleLogIn(cb) {
-        console.log('logging in');
-        this.setState({ loggedIn: true }, cb);
-    }
     render() {
-        console.log("Home render");
         return (
             <Switch>
                 <Route exact path='/login' render={({ history }) => <Login history={history} handleLogin={this.handleLogIn} />} />
@@ -29,4 +55,4 @@ class Home extends Component {
             </Switch>);
     }
 }
-export default Home;
+export default withRouter(Home);
