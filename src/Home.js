@@ -3,7 +3,6 @@ import { BrowserRouter, Redirect } from "react-router-dom";
 import { Route } from "react-router-dom";
 import {withRouter} from "react-router-dom";
 import { Switch } from "react-router-dom";
-import Login from './Login';
 import App from './App';
 import firebase from 'firebase';
 import firebaseApp from "./FirebaseApp";
@@ -13,7 +12,6 @@ class Home extends Component {
         super(props);
         this.state = {
             loggedIn: false,
-            name: "foo"
         };
 
     }    
@@ -50,7 +48,6 @@ class Home extends Component {
     render() {
         return (
             <Switch>
-                <Route exact path='/login' render={({ history }) => <Login history={history} handleLogin={this.handleLogIn} />} />
                 <Route path='/' render={() => <App login={this.state.loggedIn} />} />
             </Switch>);
     }

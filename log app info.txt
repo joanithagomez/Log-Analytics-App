@@ -1,0 +1,72 @@
+	1.	Features 
+	◦	Error Analytics
+	▪	All Errors by Total Volume
+	▪	Search by Errors
+	▪	Total Error Rate (graph)
+	◦	Usage Analytics 
+	▪	Compute VM
+	▪	Compute VM Events 
+	▪	Search for events by time range et
+	▪	Compute Volumes
+	▪	Compute Containers
+	▪	Compute Blueprints
+For the above use cases for that feature - the customer has sent a list of ALL possible error codes they might have instrumented in the code. So your application will look for these keywords group it and display the total volume for each of these keywords grouped by Type, Date, Description, Error code if any... I did a grep on log files and could find many on each of these keywords.  Some of the errors might be benign but some might be access exceptions (high in severity) - but the goal of the log analytics application is to show the noise versus real severe errors. 
+
+The most common words related to errors the platform spits out are the following.
+	1.	exception
+	2.	warn
+	3.	error
+	4.	fail
+	5.	unauthorized
+	6.	timeout
+	7.	refused 
+	8.	NoSuchPageException 
+	9.	404
+	10.	401
+	11.	500
+———————————————————————————————
+
+
+Use the following to classify/group errors by searching for :WARN && ExceptionTranslator / WARN || ExceptionTranslator [Try both conditions and validate the output]
+
+2017-09-19 11:22:39.283  WARN 97625 --- [nio-9090-exec-7] com.dchq.config.ExceptionTranslator      : ERROR-ID [076e50f4-edfa-44cc-a853-54fe109d38c4]
+2017-09-19 11:22:39.283  WARN 97625 --- [nio-9090-exec-7] com.dchq.config.ExceptionTranslator      : Character ' * ' is not allowed
+
+
+Any log with type "WARN" is the potential candidate.
+ 
+Then look for the text after "ExceptionTranslator".
+ 
+
+———————————————————————————————
+
+Use Case 1: Compute/VM - look for "DockerServerController".
+e.g.
+2017-09-19 16:01:29.890  INFO 97625 --- [nio-9090-exec-6] c.d.w.s.provider.DockerServerController  : Find all managed docker-servers 
+ 
+Find example:
+Find docker-server by id [40288184527bc4d401527bd7f9d10002] 
+ 
+Search example:
+Search docker-server term [home] page [0] pageSize [10] 
+ 
+ 
+Use Case 2: Volumes - look for 'DockerVolumeController'
+e.g.
+2017-09-19 16:04:37.616  INFO 97625 --- [nio-9090-exec-5] c.d.w.s.provider.DockerVolumeController  : Find all Volume. 
+ 
+Use Case 3: Containers - look for 'ProvisionController'
+e.g.
+2017-09-19 16:06:07.581  INFO 97625 --- [nio-9090-exec-4] c.d.w.s.provision.ProvisionController    : Find all Provisions. 
+ 
+Use Case 4: Blueprints - look for 'BlueprintController'
+e.g.
+2017-09-19 16:07:04.898  INFO 97625 --- [nio-9090-exec-4] c.d.w.s.blueprint.BlueprintController    : Filter Blueprint by term [MY] page [0] pageSize [20]
+———————————————————————————————
+
+
+
+
+Graph by total volume, by total date
+Search by errors
+

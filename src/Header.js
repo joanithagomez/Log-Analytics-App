@@ -7,8 +7,8 @@ class Header extends Component{
             <div className="title-bar">
                 <div className="logo">LOGO</div>
                 <div className="nav">
-                <p className="team">Team</p>
-                <p className="colophon">Colophon</p>
+                    
+                    <div>Joanitha Gomez</div>
                 </div>    
             </div>
         );

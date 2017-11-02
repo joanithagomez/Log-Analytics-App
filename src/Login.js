@@ -26,13 +26,9 @@ class Login extends Component {
   }
 
   handleClick(event) {
-    console.log("Username: " + this.state.username);
     var provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithRedirect(provider);
     
-    // console.log(this.props.router.push("/dboard"));
-    // this.props.history.push('/dboard');
-    // <Link to='/dboard'> </Link>
   }
 
   render() {

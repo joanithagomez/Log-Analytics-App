@@ -3,12 +3,12 @@
     text-align: center;
     width: 15%;
     float: left;
-    height: 100vh; 
+    height: 100vh;
     background-color: #E9E9E9;
     color: black;
 }
 
-li {
+.side-c li {
     padding: 10%;
     border-bottom: 1px solid #ccc;
     list-style: none;
@@ -17,4 +17,21 @@ li {
 li a {
     text-decoration: none;
     color: black;
+}
+
+.colophon,
+.team{
+    /* float: left; */
+    /* margin: 0% 15%; */
+    /* border: 2px solid yellow; */
+    /* padding: 30% 0%;    */
+    
+}
+
+.upload-btn{
+    width: auto;
+    margin : 5%;
+    height: 7vh;
+    background-color: #E80000;
+    color: white;
 }

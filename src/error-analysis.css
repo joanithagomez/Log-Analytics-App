@@ -3,19 +3,37 @@
     float: left;
     width: 100%;
     background-color: #fff;
-    
 }
 .container{
     position: relative;
     margin: 1%;
+    padding: 1%;
+  
 }
 
 .graph-c{
-    position: absolute;
-    top: 130px;
-    width: 60%;
-    min-height: 60vh;
-    border-radius: 18px;    
+    width:80%;
+    min-height: 40vh;
+    /* border-radius: 18px;     */
     /* padding : 1%; */
     background-color: white;
+    margin-bottom: 3%;
+    
+}
+
+.fold-container{
+    display: flex;
+    /* border: 1px solid green; */    
+}
+
+.file-form{
+    padding: 1%;  
+    margin-right: 0px;
+}
+.file-form label {
+    display: flex;
+    padding: 3%;
+    
+}
+.file-form input{  
 }
