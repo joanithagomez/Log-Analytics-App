@@ -43,34 +43,34 @@ class ErrorTable extends Component{
     }
 
     renderErrors(errors) {
-        // errors.forEach(function(element){
-        //     element.time = (element.time).substr(0,6);
-        //   });
+        errors.forEach(function(element){
+            element.time = (element.time).substr(0,6);
+          });
           
-        //   var errorArray = [];
-        //     var map = {};
-        //     var currentDateMap = {date: errors[0].time, freqMap: map};
+          var errorArray = [];
+            var map = {};
+            var currentDateMap = {date: errors[0].time, freqMap: map};
           
-        //     for(var i = 0; i < errors.length; i++){              
-        //       if(currentDateMap.date === errors[i].time){
-        //           if (map[errors[i].type] == undefined)
-        //                     map[errors[i].type] = 1;
-        //           else
-        //                     map[errors[i].type] = map[errors[i].type] + 1;    
+            for(var i = 0; i < errors.length; i++){              
+              if(currentDateMap.date === errors[i].time){
+                  if (map[errors[i].type] == undefined)
+                            map[errors[i].type] = 1;
+                  else
+                            map[errors[i].type] = map[errors[i].type] + 1;    
                 
               
-        //             currentDateMap.freqMap = map;
-        //       }
-        //       else {
-        //         errorArray.push(currentDateMap);
-        //         map = {};
-        //         currentDateMap = {date: errors[i].time, freqMap: map};  
-        //         map[errors[i].type] = 1;
+                    currentDateMap.freqMap = map;
+              }
+              else {
+                errorArray.push(currentDateMap);
+                map = {};
+                currentDateMap = {date: errors[i].time, freqMap: map};  
+                map[errors[i].type] = 1;
          
-        //       }
+              }
             
-        //   }
-        //    errorArray.push(currentDateMap); 
+          }
+           errorArray.push(currentDateMap); 
                 
   }
 
@@ -82,7 +82,7 @@ class ErrorTable extends Component{
             <div className="error-table">
                                   <PieChart/>
 
-                <table class="t">
+                <table className="t">
                     <tr>
                         <th>Type</th>
                         <th>Frequency</th>
@@ -91,7 +91,7 @@ class ErrorTable extends Component{
                       
                   </table>
                   
-      {/* <table class="t">
+     <table className="t">
                     <tr>
                         <th>Date</th>
                         <th>Access Denied</th>
@@ -102,7 +102,7 @@ class ErrorTable extends Component{
                         {this.renderErrors(this.props.row)}
                   
        </table>  
-                         */}
+                    
             </div>
         );    
     }
