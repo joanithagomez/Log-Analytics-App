@@ -1,19 +1,21 @@
 <?php session_start(); /* Starts the session */
     
-    /* Check Login form submitted */    
+    // Check if "Login" was pressed  
     if(isset($_POST['Login'])){
-        /* Check and assign submitted Username and Password to new variable */
+        // Assign User/pass to a variable
         $Username = isset($_POST['Username']) ? $_POST['Username'] : '';
         $Password = isset($_POST['Password']) ? $_POST['Password'] : '';
 
-        /* Check Username and Password */
+        // Checks if info matches
         $userinfo = fopen("./users.txt", "r");
         $found = false;
 
+        // Reading file line by line
         while (($line = fgets($userinfo)) != false) {
             // [username, salt, hashed password]
             $info = explode(":", $line);
             if($Username == $info[0]) {
+                // Verify password
                 $found = password_verify($Password, trim($info[1]));
             }
             if ($found) {
@@ -21,31 +23,30 @@
             }
         }
 
-
         if ($found) {
-            /* Success: Set session variables and redirect to Protected page  */
+            // Success, moves to index.php and creates a session
             $_SESSION['Username']=$Username;
             header("location:index.php");
             exit;
         } 
         else {
-            /*Unsuccessful attempt: Set error message */
+            // Sets error message
             $msg="<span style='color:red'>Invalid Login Details</span>";
         }
     }
 
+    // Checks if "Register" was pressed
     if(isset($_POST['Register'])){ 
         // Checks if fields are empty
         if ($_POST['Username'] == "" or $_POST['Password'] == "") {
             $msg="<span style='color:red'>Missing Login Details</span>";
         }
         else {
-            /* Check and assign submitted Username and Password to new variable */
+            // Assigns User/pass to a variable
             $Username = isset($_POST['Username']) ? $_POST['Username'] : '';
             $Password = isset($_POST['Password']) ? $_POST['Password'] : '';
 
             // Checks if user is already registered
-
             $userinfo = fopen("./users.txt", "r");
             $found = False;
 
@@ -60,6 +61,7 @@
                         break;
                     }
                 }
+                // If user is not found, writes info to the file.
                 if (!$found) {
                 fclose($userinfo);
                     $Password = password_hash($Password, PASSWORD_DEFAULT);
@@ -70,8 +72,8 @@
                 }
             }
             else {
-                echo "Error opening file";
-                // Error opening file
+                // Error message
+                $msg="<span style='color:red'>Unknown error!</span>";
             }
         }
     }
