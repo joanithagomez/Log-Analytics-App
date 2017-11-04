@@ -31,14 +31,16 @@ class ErrorAnalysis extends Component {
             axios.get(url).then((response) => {
 
                 lineArray = response.data;
-                lineArray.forEach(function (element) {
-                    element.time = new Date(Date.parse('2017 ' + element.time));
-                });
-
+                // lineArray.forEach(function (element) {
+                //     element.time = new Date(Date.parse('2017 ' + element.time));
+                // });
+              
                 this.setState({
                     lines: lineArray
                 });
             });
+
+
         }
 
 
@@ -54,12 +56,12 @@ class ErrorAnalysis extends Component {
         }
 
 
+    
         render() {
             return (
                 <div className="container">
                     <div className="heading-c">
                         <h1>Error Analysis </h1>
-                        {<h1>Error Analytics</h1>}
                     </div>
                     <UploadFile onUpload={(filename) => {
                         let filenameArr = [{ name: filename }];

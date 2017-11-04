@@ -1,12 +1,13 @@
 
 .error-table{
-    background-color: red;
+    background-color: white;
     width: 100%;
     min-height: auto;
+    padding: 1%;
     
 }
 
-#t {
+.t {
     width: 100%;
     border: 1px solid #eee;
     border-collapse: collapse;
@@ -17,19 +18,12 @@ th, td {
     border-bottom: 1px solid #eee;
     
 }
-table#t th {
+table .t th {
     background-color: white;
     color: #002;
 }
-table#t tr {
+table .t tr {
     background-color: #fff;    
     font-size: 0.8em;
     
 }
-
-/* table#t tr:nth-child(even) {
-    background-color: #eee;
-}
-table#t tr:nth-child(odd) {
-   background-color:#fff;
-} */
