@@ -3,6 +3,7 @@ import "./error-analysis.css";
 import UploadFile from './UploadFile';
 import ErrorTable from './ErrorTable';
 import axios from 'axios';
+import Graph from './Graph';
 
 
 class ErrorAnalysis extends Component {
@@ -72,7 +73,7 @@ class ErrorAnalysis extends Component {
                     }} />
                     <div className="fold-container">
                         <div className="graph-c">
-                            Graph
+                        <Graph/>
                 </div>
                         <form className="file-form">
                             {this.renderFiles(this.state.files)}

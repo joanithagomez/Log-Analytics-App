@@ -6,17 +6,12 @@ class Sidebar extends Component {
     render(){
         return (
             <div className="side-c">
-                <ul>
-                    <li><Link to='/dboard'>Dashboard</Link></li>
-                    <li><Link to='/erroranalysis'>Error Analysis</Link></li>
-                    <li><Link to='/usageanalysis'>Usage Analysis</Link></li>
+                <ul className="nav">
+                    <li className="nav-item"><Link to='/dboard'>Dashboard</Link></li>
+                    <li className="nav-item"><Link to='/erroranalysis'>Error Analysis</Link></li>
+                    <li className="nav-item"><Link to='/usageanalysis'>Usage Analysis</Link></li>
                 </ul>
-                <div className="links">
-                <ul>
-                <li className="team">Team</li>
-                <li className="colophon">Colophon</li>
-                </ul>    
-                </div>    
+                
             </div>
         );
     }

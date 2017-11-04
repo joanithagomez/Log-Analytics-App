@@ -14,16 +14,21 @@
 }
 th, td {
     padding: 1%;
-    text-align: left;
-    border-bottom: 1px solid #eee;
-    
+    border-bottom: 1px solid #eee;    
 }
-table .t th {
+
+#vol-table th, #vol-table td{
+    text-align: left;
+}
+
+#date-table th, #date-table td{
+    text-align: center;    
+}
+.t th {
     background-color: white;
     color: #002;
 }
-table .t tr {
+.t tr {
     background-color: #fff;    
-    font-size: 0.8em;
-    
+    font-size: 0.8em; 
 }

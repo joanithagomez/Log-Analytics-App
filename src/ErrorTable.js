@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import "./ErrorTable.css";
-import PieChart from './PieChart';
-
 
 class ErrorTable extends Component{
     
@@ -98,10 +96,8 @@ class ErrorTable extends Component{
         
         return (
             <div>
-                 <PieChart/>
-
             <div className="error-table">
-                <table className="t">
+                <table className="t" id="vol-table">
                     <tr>
                         <th>Type</th>
                         <th>Frequency</th>
@@ -110,9 +106,9 @@ class ErrorTable extends Component{
                       
                 </table>
                 </div>
-                
+
                 <div className="error-table">  
-                <table className="t">
+                <table className="t" id="date-table">
                     <tr>
                         <th>Date</th>
                         <th>Access Denied exception</th>
