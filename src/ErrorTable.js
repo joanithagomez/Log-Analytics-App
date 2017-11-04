@@ -5,7 +5,6 @@ import PieChart from './PieChart';
 class ErrorTable extends Component{
     constructor(props) {
         super(props);
-        
       }  
     
     // [{"transport: 23"}]
