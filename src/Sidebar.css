@@ -4,24 +4,24 @@
     height: 10vh;
     background-color:white;
 }
-.nav{
+.tab{
     width: 100%;  
     display: flex;
     justify-content: center;
     align-items: center;  
 }
-.nav-item {
+.tab-item {
     border: solid transparent;   
     padding: 2%;
     float: left;
    list-style: none;
 }
 
-.nav-item a {
+.tab-item a {
     text-decoration: none;
     color: #586069;
 }
-.nav-item.selected{
+.tab-item.selected{
     color: #24292e;
     border-color: red #eee transparent;
 }

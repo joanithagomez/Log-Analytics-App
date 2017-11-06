@@ -6,7 +6,7 @@ import axios from 'axios';
 import Graph from './Graph';
 
 
-class ErrorAnalysis extends Component {
+class Analysis extends Component {
     constructor(props) {
         super(props);
         let filesArr;
@@ -26,7 +26,7 @@ class ErrorAnalysis extends Component {
     }
 
         handleChange(changeEvent) {
-            var url = '/file.php?name=' + encodeURIComponent(changeEvent.target.value)+ '&type=error';
+            var url = '/file.php?name=' + encodeURIComponent(changeEvent.target.value);
             let lineArray = [];
 
             axios.get(url).then((response) => {
@@ -61,9 +61,9 @@ class ErrorAnalysis extends Component {
             let errorArray = [];
             var map = {};
             for (var i = 0; i < errors.length; i++) {
-                if (map[errors[i].type] === undefined)
+                if (map[errors[i].type] == undefined)
                 map[errors[i].type] = 1;
-                else
+                 else
                 map[errors[i].type] = map[errors[i].type] + 1;                
             }
     
@@ -79,15 +79,15 @@ class ErrorAnalysis extends Component {
     
     
         renderErrors(errors) {
+        
             var columnArray = [];
     
-            if (errors.length === 0)
+            if (errors.length == 0)
                 return;
             
-            for (var i = 0; i < errors.length; i++){
-                // console.log(errors[i]);
-                errors[i].time = (errors[i].time).substr(0,6);
-                };
+            errors.forEach(function(element){
+                element.time = (element.time).substr(0,6);
+                });
                 
                 var errorArray = [];
                 var map = {AccessDeniedException: 0,RuntimeException:0,transport:0, WARN:0 };
@@ -97,7 +97,7 @@ class ErrorAnalysis extends Component {
                 
                 for(var i = 0; i < errors.length; i++){              
                     if(currentDateMap.date === errors[i].time){
-                        if (map[errors[i].type] === undefined)
+                        if (map[errors[i].type] == undefined)
                                 map[errors[i].type] = 1;
                         else
                                 map[errors[i].type] = map[errors[i].type] + 1;    
@@ -109,37 +109,27 @@ class ErrorAnalysis extends Component {
                         errorArray.push(currentDateMap);
                         map = {AccessDeniedException: 0,RuntimeException:0,transport:0, WARN:0 };
                         currentDateMap = {date: errors[i].time, freqMap: map};  
-                        map[errors[i].type] = 1;             
+                        map[errors[i].type] = 1;
+                
                     }
                 
                 }
                 errorArray.push(currentDateMap);
             
             
-                for (var j = 0; j < errorArray.length;j++){
+                for (var i = 0; i < errorArray.length;i++){
                     columnArray.push(<tr>
-                        <td>{errorArray[j].date}</td>
-                        <td>{errorArray[j].freqMap.AccessDeniedException}</td>
-                        <td>{errorArray[j].freqMap.RuntimeException}</td>
-                        <td>{errorArray[j].freqMap.transport}</td>
-                        <td>{errorArray[j].freqMap.WARN}</td>
+                        <td>{errorArray[i].date}</td>
+                        <td>{errorArray[i].freqMap.AccessDeniedException}</td>
+                        <td>{errorArray[i].freqMap.RuntimeException}</td>
+                        <td>{errorArray[i].freqMap.transport}</td>
+                        <td>{errorArray[i].freqMap.WARN}</td>
                         </tr>);
                 }
                 return columnArray;
                     
       }
     
-        label() {
-            return (
-                <tr>
-                <th>Date</th>
-                <th>Access Denied exception</th>
-                <th>Runtime exception</th>    
-                <th>Transport</th>
-                <th>WARN</th>
-            </tr> 
-            );
-        }
         render() {
             return (
                 <div className="container">
@@ -156,16 +146,15 @@ class ErrorAnalysis extends Component {
                     <div className="fold-container">
                         <div className="graph-c">
                         <Graph/>
-                        </div>
+                </div>
                         <form className="file-form">
                             {this.renderFiles(this.state.files)}
                         </form>
                     </div>
     
-
                     <div className="errors-list">
                         <p>Errors</p>
-                        <Table tableHeader={this.label()}total={this.renderTotalErrors(this.state.lines)} byDate={this.renderErrors(this.state.lines)}/>
+                        <Table total={this.renderTotalErrors(this.state.lines)} date={this.renderErrors(this.state.lines)}/>
                     </div>
                 </div>
             );

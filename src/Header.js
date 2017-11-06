@@ -5,10 +5,9 @@ class Header extends Component{
     render() {
         return(
             <div className="title-bar">
-                <div className="logo">LOGO</div>
+                <span className="logo"><p>LOGO</p></span>
                 <div className="nav">
-                    
-                    <div>Joanitha Gomez</div>
+                    <p className="un">Joanitha Gomez</p>
                 </div>    
             </div>
         );

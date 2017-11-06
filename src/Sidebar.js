@@ -6,10 +6,10 @@ class Sidebar extends Component {
     render(){
         return (
             <div className="side-c">
-                <ul className="nav">
-                    <li className="nav-item"><Link to='/dboard'>Dashboard</Link></li>
-                    <li className="nav-item"><Link to='/erroranalysis'>Error Analysis</Link></li>
-                    <li className="nav-item"><Link to='/usageanalysis'>Usage Analysis</Link></li>
+                <ul className="tab">
+                    <li className="tab-item"><Link to='/dboard'>Dashboard</Link></li>
+                    <li className="tab-item"><Link to='/erroranalysis'>Error Analysis</Link></li>
+                    <li className="tab-item"><Link to='/usageanalysis'>Usage Analysis</Link></li>
                 </ul>
                 
             </div>

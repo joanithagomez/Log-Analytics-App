@@ -1,0 +1,37 @@
+.heading-c{
+    position: relative;
+    float: left;
+    width: 100%;
+    background-color: #fff;
+}
+.container{
+    position: relative;
+    margin: 1%;
+    padding: 1%;
+  
+}
+
+.graph-c{
+    width:80%;
+    min-height: 40vh;
+    background-color: white;
+    margin-bottom: 3%;
+    
+}
+
+.fold-container{
+    display: flex;
+    /* border: 1px solid green; */    
+}
+
+.file-form{
+    padding: 1%;  
+    margin-right: 0px;
+}
+.file-form label {
+    display: flex;
+    padding: 3%;
+    
+}
+.file-form input{  
+}
