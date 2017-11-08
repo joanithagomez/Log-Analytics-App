@@ -4,7 +4,7 @@
     $temp_name  = $_FILES['file']['tmp_name'];  
     if(isset($name)){
         if(!empty($name)){      
-            $location = 'uploads/';      
+            $location = 'file-uploads/';      
             if(move_uploaded_file($temp_name, $location.$name)){
                 echo 'File uploaded successfully';
             }

@@ -4,14 +4,17 @@ import { Route } from "react-router-dom";
 import {withRouter} from "react-router-dom";
 import { Switch } from "react-router-dom";
 import App from './App';
+import Login from './Login';
 import firebase from 'firebase';
 import firebaseApp from "./FirebaseApp";
+import axios from 'axios';
 
 class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
             loggedIn: false,
+            // checkLoggedIn: false
         };
 
     }    
@@ -48,7 +51,24 @@ class Home extends Component {
     render() {
         return (
             <Switch>
-                <Route path='/' render={() => <App login={this.state.loggedIn} />} />
+                <Route path='/' render={() => {
+                    // axios.get('/user.php').then((response) => {
+                    //     console.log(response.data);
+                    // });
+                        
+                    
+                    if (!this.state.loggedIn) {
+                       return <Login onLogin={(response) => {
+                            this.setState({
+                                loggedIn: response
+                            });
+                       }} />
+                    }
+                    else {
+                        return <App />
+                    }                 
+                }
+               } />
             </Switch>);
     }
 }

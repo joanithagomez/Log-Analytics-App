@@ -6,7 +6,6 @@
         $Username = isset($_POST['Username']) ? $_POST['Username'] : '';
         $Password = isset($_POST['Password']) ? $_POST['Password'] : '';
 
-        // Checks if info matches
         $userinfo = fopen("./users.txt", "r");
         $found = false;
 
@@ -30,8 +29,8 @@
             exit;
         } 
         else {
-            // Sets error message
-            $msg="<span style='color:red'>Invalid Login Details</span>";
+            // Sends error message
+            echo "Invalid Login Details";
         }
     }
 
@@ -39,7 +38,7 @@
     if(isset($_POST['Register'])){ 
         // Checks if fields are empty
         if ($_POST['Username'] == "" or $_POST['Password'] == "") {
-            $msg="<span style='color:red'>Missing Login Details</span>";
+            echo "Missing Login Details";
         }
         else {
             // Assigns User/pass to a variable
@@ -56,51 +55,31 @@
                     $info = explode(":", $line);
                     if($Username == $info[0]) {
                         // Set error message. User already exists
-                        $msg="<span style='color:red'>User already exists.</span>";
+                        echo 'User already exists.';
                         $found = True;
                         break;
                     }
+
                 }
+                fclose($userinfo);
                 // If user is not found, writes info to the file.
                 if (!$found) {
-                fclose($userinfo);
                     $Password = password_hash($Password, PASSWORD_DEFAULT);
                     $data = file_get_contents("./users.txt");
                     $data .= $Username . ":" . $Password . "\n";
                     file_put_contents("./users.txt", $data);
-                    $msg="<span style='color:red'>User added!</span>";
+                    echo "User added!";
+                    // Create directory for uploads for user
+                    mkdir($_SERVER['DOCUMENT_ROOT'] . "/uploads/" . $Username, 0700);
+
                 }
+
             }
             else {
                 // Error message
-                $msg="<span style='color:red'>Unknown error!</span>";
+                echo "Unknown error!";
             }
         }
     }
 ?>
 
-<form action="" method="post" name="Login_Form">
-    <table width="400" border="0" align="center" cellpadding="5" cellspacing="1" class="Table">
-        <?php if(isset($msg)){?>
-        <tr>
-            <td colspan="2" align="center" valign="top"><?php echo $msg;?></td>
-        </tr>
-        <?php } ?>
-
-        <tr>
-            <td colspan="2" align="left" valign="top"><h3>Login</h3></td>
-        </tr>
-        <tr>
-            <td align="right" valign="top">Username</td>
-            <td><input name="Username" type="text" class="Input"></td>
-        </tr>
-        <tr>
-            <td align="right">Password</td>
-            <td><input name="Password" type="password" class="Input"></td>
-        </tr>
-        <tr>
-            <td><input name="Login" type="submit" value="Login" class="Button3"></td>
-            <td><input name="Register" type="submit" value="Register" class="Button3"></td>
-        </tr>
-    </table>
-</form>

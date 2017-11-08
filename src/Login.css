@@ -24,7 +24,8 @@
 }
 
 .login-box {
-  width: 520px;
+  width: 30%;
+  /* border: 1px solid red; */
 }
 
 .log-in {
@@ -34,7 +35,7 @@
 .username-container,
 .password-container {
   min-width: 80%;
-  width: auto;
+  width: 100%;
   /* border: 2px solid green; */
   /*text-align: left;*/
   padding: 8px;
@@ -53,28 +54,30 @@
 
 input {
   min-width: 65%;
-  width: auto;
+  width: 100%;
   font-size: 1em;
 }
 
-.btn-c {
-  margin-top: 20px;
+.buttons{
   display: flex;
   justify-content: center;
   align-items: center;
 }
+.btn-c {
+  width: 100%;
+}
 
 .btn {
+  margin-top: 4%;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 1em;
   color: white;
-  min-width: 40%;
   /* border-radius: 45px; */
-  width: auto;
+  width: 100%;
   height: 50px;
-  background-color: blue;
+  background-color: blue;/
   /* background: linear-gradient( hsl(166, 100%, 42%), hsl(152, 100%, 42%) ); */
   /* box-shadow: lightgrey 0px 2px 2px 2px; */
   /* transition: background-color 0s ease-in; */

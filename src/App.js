@@ -6,19 +6,13 @@ import ContentRow from "./ContentRow";
 import Login from './Login';
 
 
-
 class App extends Component {
     constructor(props) {
         super(props);
     }
 
     render() {
-        console.log("login", this.props.login);
-        if (!this.props.login) {
-           return <Login />
-        }
-        else
-            return (
+           return (
             <div className="app">
                 <Header />
                 <ContentRow />    
