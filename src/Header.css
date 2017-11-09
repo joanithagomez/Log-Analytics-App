@@ -7,12 +7,15 @@
 }
 .logo{
     float: left;
+
 }
 
-.un{
-    float: right;
+.un, .signout{
+    margin: 5px;
 }
 
 .nav{
+    display: flex;
+    float: right;
 }
 

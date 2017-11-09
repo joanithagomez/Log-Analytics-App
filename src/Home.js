@@ -7,14 +7,12 @@ import App from './App';
 import Login from './Login';
 import firebase from 'firebase';
 import firebaseApp from "./FirebaseApp";
-import axios from 'axios';
 
 class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
             loggedIn: false,
-            // checkLoggedIn: false
         };
 
     }    
@@ -52,21 +50,21 @@ class Home extends Component {
         return (
             <Switch>
                 <Route path='/' render={() => {
-                    // axios.get('/user.php').then((response) => {
-                    //     console.log(response.data);
-                    // });
-                        
-                    
-                    if (!this.state.loggedIn) {
-                       return <Login onLogin={(response) => {
-                            this.setState({
-                                loggedIn: response
-                            });
-                       }} />
-                    }
-                    else {
-                        return <App />
-                    }                 
+                
+                    return <App loggedIn={this.state.loggedIn} onLogin={(response) => {
+                        this.setState({
+                            loggedIn: response
+                        });
+                    }} onLogout={(response) => {
+                        this.setState({
+                            loggedIn: response
+                        });
+                    }} onSession={(response) => {
+                        this.setState({
+                            loggedIn: response
+                        });
+                    }} />                    
+                                    
                 }
                } />
             </Switch>);

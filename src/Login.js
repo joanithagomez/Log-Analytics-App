@@ -45,7 +45,6 @@ class Login extends Component {
     data.append('Password', this.state.formvalues['Password']);
     let self = this;
     axios.post('/login.php', data).then((response) => {
-      console.log(response.data);
       this.props.onLogin(response.data);
     });
 
@@ -55,6 +54,7 @@ class Login extends Component {
     const data = new FormData();
     data.append('Username', this.state.formvalues['Username']);
     data.append('Password', this.state.formvalues['Password']);
+    
     axios.post('/register.php', data).then((response)=> {   
       console.log(response.data);
     });

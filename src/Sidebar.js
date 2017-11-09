@@ -7,7 +7,7 @@ class Sidebar extends Component {
         return (
             <div className="side-c">
                 <ul className="tab">
-                    <li className="tab-item"><Link to='/dboard'>Dashboard</Link></li>
+                    <li className="tab-item"><Link to='/'>Dashboard</Link></li>
                     <li className="tab-item"><Link to='/erroranalysis'>Error Analysis</Link></li>
                     <li className="tab-item"><Link to='/usageanalysis'>Usage Analysis</Link></li>
                 </ul>

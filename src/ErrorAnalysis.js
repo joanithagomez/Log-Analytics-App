@@ -17,6 +17,7 @@ class ErrorAnalysis extends Component {
 
         axios.get('/files.php').then((response) => {
             filesArr = response.data;
+            // console.log(response.data);
             this.setState({
                 files: filesArr,
             });
@@ -30,11 +31,14 @@ class ErrorAnalysis extends Component {
             let lineArray = [];
 
             axios.get(url).then((response) => {
-
+                console.log(response.data);
                 lineArray = response.data;
                 // lineArray.forEach(function (element) {
                 //     element.time = new Date(Date.parse('2017 ' + element.time));
                 // });
+                // for (var i = 0; i < lineArray.length; i++){
+                //     console.log(lineArray[i]);
+                // }
               
                 this.setState({
                     lines: lineArray
@@ -47,11 +51,9 @@ class ErrorAnalysis extends Component {
 
         renderFiles(files) {
             let fileArray = [];
-            var rbtnId = "";
 
             for (var i = 0; i < files.length; i++) {
-                rbtnId = "r-btn" + i;
-                fileArray.push(<label><input id={rbtnId} type="radio" name="file" value={files[i].name} onChange={this.handleChange} /> {files[i].name}</label>);
+                fileArray.push(<label><input type="radio" name="file" value={files[i].name} onChange={this.handleChange} /> {files[i].name}</label>);
             }
             return fileArray;
         }
@@ -81,7 +83,7 @@ class ErrorAnalysis extends Component {
         renderErrors(errors) {
             var columnArray = [];
     
-            if (errors.length === 0)
+            if (errors.length === 0 || errors.length == undefined)
                 return;
             
             for (var i = 0; i < errors.length; i++){
@@ -165,7 +167,7 @@ class ErrorAnalysis extends Component {
 
                     <div className="errors-list">
                         <p>Errors</p>
-                        <Table tableHeader={this.label()}total={this.renderTotalErrors(this.state.lines)} byDate={this.renderErrors(this.state.lines)}/>
+                        <Table tableHeader={this.label()} total={this.renderTotalErrors(this.state.lines)} byDate={this.renderErrors(this.state.lines)}/>
                     </div>
                 </div>
             );
