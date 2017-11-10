@@ -30,10 +30,26 @@
     padding: 1%;  
     margin-right: 0px;
 }
-.file-form label {
-    display: flex;
-    padding: 3%;
-    
+
+label{
+cursor: pointer;
+user-select: none;
+color: grey;
+background-color: white;
+
 }
-.file-form input{  
+
+input[type=radio]{
+    position: absolute;
+    visibility: hidden;
+    display: none;
 }
+label:hover{
+    color: blue;
+}
+
+input[type=radio]:checked + label{
+    background-color: blue;
+    color: white;
+}
+

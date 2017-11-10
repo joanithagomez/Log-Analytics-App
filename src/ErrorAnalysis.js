@@ -17,13 +17,14 @@ class ErrorAnalysis extends Component {
 
         axios.get('/files.php').then((response) => {
             filesArr = response.data;
-            // console.log(response.data);
             this.setState({
                 files: filesArr,
             });
         });
 
         this.handleChange = this.handleChange.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
+        
     }
 
         handleChange(changeEvent) {
@@ -33,12 +34,7 @@ class ErrorAnalysis extends Component {
             axios.get(url).then((response) => {
                 console.log(response.data);
                 lineArray = response.data;
-                // lineArray.forEach(function (element) {
-                //     element.time = new Date(Date.parse('2017 ' + element.time));
-                // });
-                // for (var i = 0; i < lineArray.length; i++){
-                //     console.log(lineArray[i]);
-                // }
+              
               
                 this.setState({
                     lines: lineArray
@@ -48,13 +44,27 @@ class ErrorAnalysis extends Component {
 
         }
 
+        handleDelete(e) {
+            e.preventDefault();
+            // console.log(e.target.value);
+            // axios.post('/deleteFile.php', { file: e.target.value }).then((response) => {
+            //     if (response.data) {
+            //         console.log("deleted");                    
+            //     }
+            //     else {
+            //         console.log("Failed to delete");
+            //     }
+            // });
+        }
+
 
         renderFiles(files) {
             let fileArray = [];
 
             for (var i = 0; i < files.length; i++) {
-                fileArray.push(<label><input type="radio" name="file" value={files[i].name} onChange={this.handleChange} /> {files[i].name}</label>);
+                fileArray.push(<div className="rbtn"><input type="radio" name="file" value={files[i].name} onChange={this.handleChange} id={files[i].name} name="selector" checked /><label for={files[i].name}>{files[i].name}<button className="delete" value={files[i].name} onClick={this.handleDelete} >Delete</button></label></div>);
             }
+            fileArray.push();
             return fileArray;
         }
 
@@ -87,7 +97,6 @@ class ErrorAnalysis extends Component {
                 return;
             
             for (var i = 0; i < errors.length; i++){
-                // console.log(errors[i]);
                 errors[i].time = (errors[i].time).substr(0,6);
                 };
                 

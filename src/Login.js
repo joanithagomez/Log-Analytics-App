@@ -24,9 +24,9 @@ class Login extends Component {
 
   handleClick(event) {
     var provider = new firebase.auth.GoogleAuthProvider();
-    firebase.auth().signInWithRedirect(provider);
-    
+    firebase.auth().signInWithRedirect(provider);    
   }
+  
   handleChange(event) {
     event.preventDefault();
     let formvalues = this.state.formvalues;
