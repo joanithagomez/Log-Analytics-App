@@ -11,7 +11,7 @@ class Graph extends Component {
             options ={{}}
             graph_id="PieChart"
             width="100%"
-            height="500px"
+            height="400px"
             legend_toggle
         />   
         );

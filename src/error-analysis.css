@@ -1,55 +1,102 @@
+
 .heading-c{
     position: relative;
-    float: left;
     width: 100%;
-    background-color: #fff;
-}
-.container{
-    position: relative;
-    margin: 1%;
-    padding: 1%;
-  
+    font-size: 1.4em;    
+    padding: 2% 0%;
 }
 
-.graph-c{
-    width:80%;
-    min-height: 40vh;
-    /* border-radius: 18px;     */
-    /* padding : 1%; */
-    background-color: white;
-    margin-bottom: 3%;
+.container{
+    position: relative;
+    padding: 0% 8.33%;
+}
+
+.file-container{
+    display: flex;
     
 }
 
-.fold-container{
-    display: flex;
-    /* border: 1px solid green; */    
+.graph-c{
+    min-height: 40vh;
+    border-radius: 15px; 
+    margin-bottom: 3%;    
+    box-shadow: 0 2px 3px 0 rgba(0,0,0,.075);
+}
+.file-subc {
+    /* border: 1px solid red; */
+}
+.graph{
+    background-color: white;
 }
 
-.file-form{
-    padding: 1%;  
-    margin-right: 0px;
+.files-bar{
+    
+       text-align: center;
+       height: auto;       
+       background-color: white;
+}
+.file{
+    display: inline-block; 
+    border-radius: 5px;    
 }
 
-label{
-cursor: pointer;
-user-select: none;
-color: grey;
-background-color: white;
-
+input[type=radio] + label{
+    font-size: 0.8em;
+    display: block;
+    cursor: pointer;
+    user-select: none;
+    color: #57606A;
+    background-color: white;
+    padding: .625rem 2rem;
+    border-radius: 5px;
 }
 
 input[type=radio]{
     position: absolute;
-    visibility: hidden;
-    display: none;
-}
-label:hover{
-    color: blue;
+    visibility: hidden; 
+    display: none;  
 }
 
-input[type=radio]:checked + label{
-    background-color: blue;
+
+input[type=radio]:checked + label{    
+    background-color: #ccc;
     color: white;
 }
 
+.upload-c{
+
+}
+
+.upload-btn{
+    margin: 3% 0%;    
+    display: inline-block;
+    background-color: rgb(232, 27, 51);  
+    box-shadow: 0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+    padding: .6rem 1.5rem;            
+    color: white;    
+    border-radius: 5px;
+    border: none;  
+    cursor: pointer; 
+    text-align: center;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: all .22s;
+}
+
+.upload-btn:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 7px 14px rgba(50,50,93,.1), 0 3px 6px rgba(0,0,0,.08);
+    filter: brightness(130%);
+}
+
+input[type=file]{
+    position: absolute;
+    visibility: hidden; 
+    display: none;
+}
+
+.table-c{
+    box-shadow: 0 2px 3px 0 rgba(0,0,0,.075);
+    
+}

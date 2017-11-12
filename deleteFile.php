@@ -9,8 +9,6 @@ if(!isset($_SESSION['Username'])){
 $filename = $_POST['file']; //get the filename
 $Username = $_SESSION['Username'];
 $dir = $_SERVER['DOCUMENT_ROOT'] . "/uploads/" .$Username . '/'. $filename;
-
-echo $dir;
 if (!file_exists($dir)) {
     echo false;
     exit;
@@ -19,7 +17,7 @@ if (!file_exists($dir)) {
 unlink($dir);
 
 if(!file_exists($dir)){
-echo true;
+    echo true;
 }else{
 	echo false;
 }

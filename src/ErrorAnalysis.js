@@ -5,7 +5,6 @@ import Table from './Table';
 import axios from 'axios';
 import Graph from './Graph';
 
-
 class ErrorAnalysis extends Component {
     constructor(props) {
         super(props);
@@ -32,10 +31,7 @@ class ErrorAnalysis extends Component {
             let lineArray = [];
 
             axios.get(url).then((response) => {
-                console.log(response.data);
                 lineArray = response.data;
-              
-              
                 this.setState({
                     lines: lineArray
                 });
@@ -46,28 +42,28 @@ class ErrorAnalysis extends Component {
 
         handleDelete(e) {
             e.preventDefault();
-            // console.log(e.target.value);
-            // axios.post('/deleteFile.php', { file: e.target.value }).then((response) => {
-            //     if (response.data) {
-            //         console.log("deleted");                    
-            //     }
-            //     else {
-            //         console.log("Failed to delete");
-            //     }
-            // });
+            console.log(e.target.value);
+            const data = new FormData();      
+            data.append( 'file', e.target.value );
+            axios.post('/deleteFile.php', data).then((response) => {
+                if (response.data) {
+                    console.log("deleted");                    
+                }
+                else {
+                    console.log("Failed to delete");
+                }
+            });
         }
 
-
+       
         renderFiles(files) {
             let fileArray = [];
-
             for (var i = 0; i < files.length; i++) {
-                fileArray.push(<div className="rbtn"><input type="radio" name="file" value={files[i].name} onChange={this.handleChange} id={files[i].name} name="selector" checked /><label for={files[i].name}>{files[i].name}<button className="delete" value={files[i].name} onClick={this.handleDelete} >Delete</button></label></div>);
+                fileArray.push(<div className="rbtn"><input type="radio" name="file" value={files[i].name} onChange={this.handleChange} id={files[i].name} name="selector" /><label for={files[i].name}>{files[i].name}</label><button className="delete" value={files[i].name} onClick={this.handleDelete} >Delete</button></div>);
             }
-            fileArray.push();
+
             return fileArray;
         }
-
 
         renderTotalErrors(errors) {
             let errorArray = [];
@@ -155,28 +151,36 @@ class ErrorAnalysis extends Component {
             return (
                 <div className="container">
                     <div className="heading-c">
-                        <h1>Error Analysis </h1>
+                        <h1>Error Analysis</h1>
                     </div>
-                    <UploadFile onUpload={(filename) => {
-                        let filenameArr = [{ name: filename }];
-                        let newArray = this.state.files.concat(filenameArr);
-                        this.setState({
-                            files: newArray
-                        })
-                    }} />
-                    <div className="fold-container">
-                        <div className="graph-c">
-                        <Graph/>
-                        </div>
-                        <form className="file-form">
-                            {this.renderFiles(this.state.files)}
-                        </form>
-                    </div>
-    
 
-                    <div className="errors-list">
-                        <p>Errors</p>
-                        <Table tableHeader={this.label()} total={this.renderTotalErrors(this.state.lines)} byDate={this.renderErrors(this.state.lines)}/>
+                    <div className="col-12 file-container">
+                        <div className="col-10 graph-c">
+                            <Graph className="graph"/>
+                        </div>
+                        
+                        <div className="col-2 file-subc">
+                            
+                            <div className="files-bar">
+
+                            <UploadFile onUpload={(filename) => {
+                            let filenameArr = [{ name: filename }];
+                            let newArray = this.state.files.concat(filenameArr);
+                            this.setState({
+                                files: newArray
+                            })
+                                }} />
+                                
+                            <div className="file">
+                                        {this.renderFiles(this.state.files)}
+                                </div>
+                            </div> 
+                        </div>    
+                    </div>
+
+                    <div className="row errors-list">
+                        {/* {<p>Errors</p> */}
+                        <Table className="table-c" tableHeader={this.label()} total={this.renderTotalErrors(this.state.lines)} byDate={this.renderErrors(this.state.lines)}/>
                     </div>
                 </div>
             );

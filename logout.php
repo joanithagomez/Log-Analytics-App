@@ -1,6 +1,11 @@
 <?php 
     session_start();
-    session_destroy();
-    header("location:login.php");  /* Redirect to login page */
+    if(isset($_SESSION['Username'])){
+        session_destroy();
+       echo false;
+    }else {
+        true;
+    }
+    
     exit;
 ?>
