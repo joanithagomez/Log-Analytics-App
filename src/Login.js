@@ -1,32 +1,19 @@
 import React, { Component } from "react";
 import "./Login.css";
 import axios from 'axios';
-import { Route } from "react-router-dom";
- import App from './App';
- import { Link } from "react-router-dom";
- import firebase from 'firebase';
- import firebaseApp from "./FirebaseApp";
  
 
 class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      formvalues: {},
-      
+      formvalues: {},      
     };
     this.handleChange = this.handleChange.bind(this);
-    this.handleClick = this.handleClick.bind(this);
     this.handleSignIn = this.handleSignIn.bind(this);
     this.handleRegister = this.handleRegister.bind(this);
   }
 
-
-  handleClick(event) {
-    var provider = new firebase.auth.GoogleAuthProvider();
-    firebase.auth().signInWithRedirect(provider);    
-  }
-  
   handleChange(event) {
     event.preventDefault();
     let formvalues = this.state.formvalues;
@@ -43,7 +30,6 @@ class Login extends Component {
     const data = new FormData();
     data.append('Username', this.state.formvalues['Username']);
     data.append('Password', this.state.formvalues['Password']);
-    let self = this;
     axios.post('/login.php', data).then((response) => {
       this.props.onLogin(response.data);
     });
@@ -57,6 +43,9 @@ class Login extends Component {
     
     axios.post('/register.php', data).then((response)=> {   
       console.log(response.data);
+      if (response.data === 'empty') {
+        
+      }
     });
   }
 
@@ -85,7 +74,7 @@ class Login extends Component {
             <div className="btn-c">
                 <div className="btn" name="Login" type="submit" onClick={this.handleSignIn}>Sign In</div>
                 <div className="btn" name="Register" type="submit" onClick={this.handleRegister}>Register</div>  
-              <div className="btn" onClick = {this.handleClick} >Sign in with Google</div>
+           
               </div>
             </div>  
           </div>

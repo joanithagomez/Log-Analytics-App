@@ -17,6 +17,9 @@
 }
 
 .graph-c{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     min-height: 40vh;
     border-radius: 15px; 
     margin-bottom: 3%;    
@@ -59,8 +62,8 @@ input[type=radio]{
 
 
 input[type=radio]:checked + label{    
-    background-color: #ccc;
-    color: white;
+    background-color: #eee;
+    color:  rgb(232, 27, 51);
 }
 
 .upload-c{
@@ -68,7 +71,7 @@ input[type=radio]:checked + label{
 }
 
 .upload-btn{
-    margin: 3% 0%;    
+    margin: 15% 0%;    
     display: inline-block;
     background-color: rgb(232, 27, 51);  
     box-shadow: 0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);

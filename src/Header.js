@@ -11,8 +11,6 @@ class Header extends Component{
     }
 
     componentDidMount() {
-        var self = this;
-        var name = "";
         axios.get('/user.php').then((response) => {
             this.setState({
                 name: response.data
@@ -27,7 +25,7 @@ class Header extends Component{
             <div className="title-bar">
                 <div className="logo">
                         <svg viewBox="0 0 23 23" version="1.1" xmlns="http://www.w3.org/2000/svg">
-            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
                 <g id="Group">
                     <path d="M11.5,0.00587008176 C11.6193277,0.00196651255 11.7391289,0 11.859375,0 C18.0121723,0 23,5.14872538 23,11.5 L17.9660794,11.5 C17.8710853,8.20529041 15.2538296,5.56451613 12.0390625,5.56451613 C11.8573501,5.56451613 11.6775467,5.57295339 11.5,5.5894691 L11.5,0.00587008176 Z" id="Combined-Shape" fill="#F5B00C"></path>
                     <path d="M11.5,23 C5.11442696,22.8040643 0,17.7303298 0,11.5 C0,5.26967019 5.11442696,0.195935682 11.5,-5.47305257e-16 L11.5,5.58645057 C8.27626249,5.86772952 5.75,8.49100492 5.75,11.6855786 C5.75,14.8801523 8.27626249,17.5034277 11.5,17.7847066 L11.5,23 Z" id="Combined-Shape" fill="#DC3146"></path>

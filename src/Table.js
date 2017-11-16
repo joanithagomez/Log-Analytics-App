@@ -21,27 +21,27 @@ class Table extends Component{
     render() {
         
         return (
-            <div>
-            <div className="table">
-                <table className="t" id="vol-table">
+            <span>
+            <table className="table">
+                <tbody className="t" id="vol-table">
                     <tr>
                         <th>Type</th>
                         <th>Frequency</th>
                     </tr>
                     {this.props.total}
                       
+                </tbody>
                 </table>
-                </div>
 
-                <div className="table">  
-                <table className="t" id="date-table">
+                <table className="table">  
+                <tbody className="t" id="date-table">
                     {this.props.tableHeader}
                     {this.props.byDate}                               
-                </table>  
+                </tbody>  
                     
-                </div>
+                </table>
 
-            </div>    
+            </span>    
         );    
     }
 }

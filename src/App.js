@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Redirect } from 'react-router'
 import "./App.css";
 import Header from "./Header";
 import ContentRow from "./ContentRow";
@@ -20,7 +19,7 @@ class App extends Component {
         var self = this;
           
         axios.get('/user.php').then((response) => {            
-            if (response.data != "") {
+            if (response.data !== "") {
                 self.props.onSession(true);                
             }
             this.setState({

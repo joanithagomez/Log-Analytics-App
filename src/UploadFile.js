@@ -12,11 +12,11 @@ class UploadFile extends Component{
         };
     }
     
-    toggleModal = () => {
-        this.setState({
-          isOpen: !this.state.isOpen
-        });
-    } 
+    // toggleModal = () => {
+    //     this.setState({
+    //         isOpen: !this.state.isOpen
+    //       });
+    // } 
     
     handleUpload(event) {
         const data = new FormData();
@@ -25,7 +25,9 @@ class UploadFile extends Component{
         let self = this;            
         axios.post('/upload.php', data).then((response) => {
             if (response.data === "File already exists. Your file was not uploaded.") {
-                this.toggleModal;
+                this.setState({
+                    isOpen: !this.state.isOpen
+                  });
             }
             else{
                 self.props.onUpload(response.data);
@@ -40,7 +42,11 @@ class UploadFile extends Component{
                     <input type="file" name="file" onChange={(e) => this.handleUpload(e)} onClick={this.toggleModal} />
             </label>
             <Modal show={this.state.isOpen}
-          onClose={this.toggleModal}>
+                onClose={() => {
+                    this.setState({
+                        isOpen: !this.state.isOpen
+                    });
+                }}>
           File already exists.Your file was not uploaded.
         </Modal>
             </span>

@@ -1,12 +1,8 @@
 import React, { Component } from "react";
-import { BrowserRouter, Redirect } from "react-router-dom";
 import { Route } from "react-router-dom";
 import {withRouter} from "react-router-dom";
 import { Switch } from "react-router-dom";
 import App from './App';
-import Login from './Login';
-import firebase from 'firebase';
-import firebaseApp from "./FirebaseApp";
 
 
 class Home extends Component {

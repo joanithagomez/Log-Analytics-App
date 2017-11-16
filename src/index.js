@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Redirect } from "react-router-dom";
-import { Route } from "react-router-dom";
-import { Switch } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import './normalize.css';
 import './index.css';
 
