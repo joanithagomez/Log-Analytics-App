@@ -57,7 +57,7 @@
 
 .app{
     font-family: 'Open Sans', sans-serif;
-    height: inherit;
+    min-height: inherit;
 }
 
 [class*="col-"] {

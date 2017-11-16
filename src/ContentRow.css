@@ -1,5 +1,5 @@
 span{
-    height: 100vh;
+    min-height: 100vh;
     overflow-y: hidden;    /* Trigger vertical scroll    */
     overflow-x: hidden;  /* Hide the horizontal scroll */
 }
