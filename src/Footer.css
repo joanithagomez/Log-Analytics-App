@@ -1,0 +1,11 @@
+.footer{
+    background-color:#fff;
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sign{
+    font-size: 0.5em;
+}

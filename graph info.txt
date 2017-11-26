@@ -1,4 +1,0 @@
-Access Denied exception
-Transport error
-WARN Exception translator
-Connect failure

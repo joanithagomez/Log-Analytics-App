@@ -9,40 +9,45 @@
 .container{
     min-height: 100vh;
     position: relative;
-    padding: 0% 8.33%;
-}
-
-.file-container{
-    display: flex;
+    /* padding: 0% 8.33%; */
+    height: auto;
     
+}
+.sub-c{
+
+    display: flex;
+}
+.right-container{
+    /* padding-right:8.33%;     */
 }
 
 .graph-c{
-    display: flex;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
     justify-content: center;
     align-items: center;
     min-height: 40vh;
-    border-radius: 15px; 
     margin-bottom: 3%;    
-    box-shadow: 0 2px 3px 0 rgba(0,0,0,.075);
 }
-.file-subc {
-    /* border: 1px solid red; */
-}
+
+
 .graph{
     background-color: white;
 }
 
 .files-bar{
-    
        text-align: center;
        height: auto;       
-       background-color: white;
+       background-color: #F7F7F7;
 }
 .file{
     display: inline-block; 
     border-radius: 5px;    
 }
+
+nav ul { 
+    height: 40vh;
+}
+nav ul{overflow:hidden; overflow-y:scroll;}
 
 input[type=radio] + label{
     font-size: 0.8em;
@@ -52,7 +57,6 @@ input[type=radio] + label{
     color: #57606A;
     background-color: white;
     padding: .625rem 2rem;
-    border-radius: 5px;
 }
 
 input[type=radio]{
@@ -64,7 +68,7 @@ input[type=radio]{
 
 input[type=radio]:checked + label{    
     background-color: #eee;
-    color:  rgb(232, 27, 51);
+    color:  #0C458A;
 }
 
 .upload-c{
@@ -101,6 +105,5 @@ input[type=file]{
 }
 
 .table-c{
-    box-shadow: 0 2px 3px 0 rgba(0,0,0,.075);
     
 }

@@ -3,20 +3,6 @@ import "./Table.css";
 
 class Table extends Component{
     
-// =====================
-    //          Trans   Fail
-    // aug 18      22   2
-    // aug 19       11  0
-    // 
-    
-    // [{date: 11/22/19,
-    //   errors: { type: , freq: ;}
-    //  },
-    // {
-    //      date:11/23/19,
-    //      errors:   {type: freq ;}
-    // }]
-    
 
     render() {
         

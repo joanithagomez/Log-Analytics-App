@@ -37,7 +37,7 @@ class Header extends Component{
                 </div>
                 <div className="header-links">
                       
-                    <p className="un">{this.state.name}</p>
+                    <p className="un">Welcome {this.state.name}!</p>
                     <Logout className="logout" onLogout={this.props.onLogout}/>
                 </div>    
             </div>

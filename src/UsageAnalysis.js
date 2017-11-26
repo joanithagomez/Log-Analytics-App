@@ -83,7 +83,11 @@ class UsageAnalysis extends Component {
         renderFiles(files) {
             let fileArray = [];
             for (var i = 0; i < files.length; i++) {
-                fileArray.push(<div key={'rbtn' + i}className="rbtn"><input type="radio" value={files[i].name} onChange={this.handleChange} id={files[i].name} name="selector" /><label htmlFor={files[i].name}>{files[i].name}<button className="delete" value={files[i].name} onClick={this.handleDelete} >Delete</button></label></div>);
+                if (i === 0) {
+                    fileArray.push(<div key={'rbtn' + i} className="rbtn"><input type="radio" value={files[i].name} onChange={this.handleChange} id={files[i].name} name="selector" defaultChecked={true}/><label htmlFor={files[i].name}>{files[i].name}</label><button className="delete" value={files[i].name} onClick={this.handleDelete} >Delete</button></div>);
+                }
+                else
+                    fileArray.push(<div key={'rbtn' + i}className="rbtn"><input type="radio" value={files[i].name} onChange={this.handleChange} id={files[i].name} name="selector" /><label htmlFor={files[i].name}>{files[i].name}<button className="delete" value={files[i].name} onClick={this.handleDelete} >Delete</button></label></div>);
             }
             return fileArray;
         }

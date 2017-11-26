@@ -4,11 +4,12 @@
     width: 100%;
     min-height: auto;
     padding: 1%;
-    
+    margin-top: 2%;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
 }
 
 .t {
-    width: 100%;
+    width: 100%;    
     border: 1px solid #eee;
     border-collapse: collapse;
 }

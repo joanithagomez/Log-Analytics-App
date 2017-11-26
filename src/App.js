@@ -4,8 +4,7 @@ import Header from "./Header";
 import ContentRow from "./ContentRow";
 import Login from './Login';
 import axios from 'axios';
-
-import LoadingPage from './LoadingPage'
+import Footer from './Footer'
 
 class App extends Component {
     constructor(props) {
@@ -32,10 +31,6 @@ class App extends Component {
 
     
     render() {
-
-        if (this.state.loading) {
-            return <LoadingPage show={this.state.loading} />                          
-        } 
       
             if (!this.props.loggedIn) {
                 return <Login onLogin={this.props.onLogin} />
@@ -45,6 +40,7 @@ class App extends Component {
                     <div className="app">    
                         <Header onLogout={this.props.onLogout} />
                         <ContentRow />
+                        <Footer/>
                     </div>
                 );
             }

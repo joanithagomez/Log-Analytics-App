@@ -53,7 +53,6 @@ class ErrorAnalysis extends Component {
                 this.fetchFileData(filesArr[0].name);
             
         });
-       
 
     }
 
@@ -69,7 +68,13 @@ class ErrorAnalysis extends Component {
             data.append( 'file', e.target.value );
             axios.post('/deleteFile.php', data).then((response) => {
                 if (response.data) {
-                    console.log("deleted");                    
+                    axios.get('/files.php').then((response) => {
+                        let filesArr = response.data;
+            
+                        this.setState({
+                            files: filesArr,
+                        });
+                    });                          
                 }
                 else {
                     console.log("Failed to delete");
@@ -81,7 +86,11 @@ class ErrorAnalysis extends Component {
         renderFiles(files) {
             let fileArray = [];
             for (var i = 0; i < files.length; i++) {
-                fileArray.push(<div key={'rbtn'+ i} className="rbtn"><input type="radio" value={files[i].name} onChange={this.handleChange} id={files[i].name} name="selector"/><label htmlFor={files[i].name}>{files[i].name}</label><button className="delete" value={files[i].name} onClick={this.handleDelete} >Delete</button></div>);
+                if (i === 0) {
+                    fileArray.push(<li key={'rbtn' + i} className="rbtn"><input type="radio" value={files[i].name} onChange={this.handleChange} id={files[i].name} name="selector" defaultChecked={true}/><label htmlFor={files[i].name}>{files[i].name}</label><button className="delete" value={files[i].name} onClick={this.handleDelete} >Delete</button></li>);
+                }
+                else
+                    fileArray.push(<li key={'rbtn' + i} className="rbtn"><input type="radio" value={files[i].name} onChange={this.handleChange} id={files[i].name} name="selector" /><label htmlFor={files[i].name}>{files[i].name}</label><button className="delete" value={files[i].name} onClick={this.handleDelete} >Delete</button></li>);
             }
 
             return fileArray;
@@ -207,20 +216,12 @@ class ErrorAnalysis extends Component {
             
             return (
                 <div className="container">                    
-                    <div className="heading-c">
-                        <h1>Error Analysis</h1>
-                    </div>
+                   
+                    <div className=" col-12 sub-c">
 
-                    <div className="col-12 file-container">
-                        <div className="col-10 graph-c">
-                            {(this.state.dataLoaded)?
-                                <Graph className="graph" dataset={this.graphData(this.state.lines)} />:
-                                <p>No data received</p>
-                            }    
-                        </div>
-                        
-
-                        <div className="col-2 file-subc">                            
+                        <div className="col-2 left-container">
+                            
+                            <div className="file-subc">                            
                             <div className="files-bar">
 
                             <UploadFile onUpload={(filename) => {
@@ -231,17 +232,35 @@ class ErrorAnalysis extends Component {
                             })
                                 }} />
                                 
-                            <div className="file">
-                                        {this.renderFiles(this.state.files)}
-                                </div>
+                                <nav className="file">
+                                     <ul>       
+                                            {this.renderFiles(this.state.files)}
+                                        </ul>
+                                </nav>
                             </div> 
-                        </div>    
+                        </div>
+                    </div>    
+                    <div className="col-9 right-container">
+                        <div className="heading-c">
+                        <h1>Error Analysis</h1>
+                    </div>        
+                        <div className="graph-c">
+                            {(this.state.dataLoaded)?
+                                <Graph className="graph" dataset={this.graphData(this.state.lines)} />:
+                                <p>No data received</p>
+                            }    
+                        </div>
+                        
+                        <div className="errors-list">
+                            <Table className="table-c" tableHeader={this.label()} total={this.renderTotalErrors(this.state.lines)} byDate={this.renderErrors(this.state.lines)}/>
+                        </div>
+
                     </div>
 
-                    <div className="row errors-list">
-                        <Table className="table-c" tableHeader={this.label()} total={this.renderTotalErrors(this.state.lines)} byDate={this.renderErrors(this.state.lines)}/>
-                    </div>
-                </div>
+
+               
+                    </div>     
+                </div>    
             );
         }
 
