@@ -1,12 +1,14 @@
+
 .App {
   text-align: center;
-  color: #191919;
+  color: #36343F;
+  max-height: 100vh;
+  
 }
 
 .App-header {
   background-color: #122640;
-  height: 100px;
-  padding: 20px;
+  padding: 1.5%;
   color: white;
 }
 
@@ -14,32 +16,72 @@
   font-size: 1.8em;
 }
 
-.login-container {
-  width: 100%;
-  height: 500px;
+.signin-container{
+  margin-left: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* border: 1px solid red; */
+  max-height: 90vh;  
+  min-height: auto;  
+  padding: 0% 4% ;
+  
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.register-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .login-box {
-  width: 30%;
+  width: 100%;
   /* border: 1px solid red; */
 }
 
+
+.icon{
+  width: 100%;
+  height: 30vh;
+  stroke-width: 1;
+  stroke: #DADADA;
+}
+
+
+.label{
+  padding: 2em 0em;
+  display: flex;
+}
+
+.form{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* border: 2px solid green; */
+
+}
+
+.fc{
+  width: 80%;
+}
 .log-in {
   font-size: 1.3em;
 }
 
 .username-container,
 .password-container {
-  min-width: 80%;
+  min-width: 100%;
   width: 100%;
+  padding: 2%;
   /* border: 2px solid green; */
-  /*text-align: left;*/
-  padding: 8px;
-}
+  text-align: left;
+ }
 
 .username-label,
 .password-label {
@@ -53,9 +95,11 @@
 }
 
 input {
-  min-width: 65%;
+  min-width: 100%;
   width: 100%;
   font-size: 1em;
+  border: none;
+  border-bottom: solid 0.6px grey;
 }
 
 .buttons{
@@ -63,32 +107,42 @@ input {
   justify-content: center;
   align-items: center;
 }
+
 .btn-c {
   width: 100%;
-}
-
-.btn {
-  margin-top: 4%;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1em;
-  color: white;
-  /* border-radius: 45px; */
-  width: 100%;
+}
+
+.btn {
+  margin-top: 6%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.9em;
+  border-radius: 5px;
+  width: 60%;
   height: 50px;
-  background-color: blue;/
   /* background: linear-gradient( hsl(166, 100%, 42%), hsl(152, 100%, 42%) ); */
   /* box-shadow: lightgrey 0px 2px 2px 2px; */
   /* transition: background-color 0s ease-in; */
   user-select: none;
 }
 
-.btn:hover {
-  position: relative;
-  top: 3px;
-  cursor: pointer;
+.signup{
+  background-color: #0D4488;
+  color: white;
+}
 
+.signin{
+  color: #0D4488 ;
+  border: 1px solid #0D4488;    
+}
+.btn:hover {
+  /* position: relative; */
+  /* top: 3px; */
+  cursor: pointer;
   /* box-shadow: lightgrey 0px 2px 2px 3px; */
   /* background: hsl(150, 100%, 35%); */
   

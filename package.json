@@ -5,13 +5,13 @@
   "dependencies": {
     "axios": "^0.17.0",
     "classnames": "^2.2.5",
+    "feather-icons": "^4.0.1",
     "firebase": "^4.5.2",
     "google": "^2.1.0",
     "prop-types": "^15.6.0",
     "react": "^16.1.0",
     "react-dom": "^16.1.0",
     "react-google-charts": "^1.5.5",
-    "react-loading-bar": "0.0.6",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.14"
   },

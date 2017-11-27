@@ -20,6 +20,9 @@ th, td {
 
 #vol-table th, #vol-table td{
     text-align: left;
+    padding: 1%;
+    
+    
 }
 
 #date-table th, #date-table td{

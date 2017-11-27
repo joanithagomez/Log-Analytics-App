@@ -9,16 +9,26 @@
 .container{
     min-height: 100vh;
     position: relative;
-    /* padding: 0% 8.33%; */
     height: auto;
-    
+    margin-left: 1%;
 }
-.sub-c{
 
+.sub-c{
     display: flex;
 }
-.right-container{
-    /* padding-right:8.33%;     */
+
+.delete-button{
+    border: none;
+    user-select: none;
+}
+
+.delete{
+    border: none;
+    color: grey;
+    cursor: pointer;
+    display: inline-block;
+    width: auto;
+    height: 20px;
 }
 
 .graph-c{
@@ -37,17 +47,23 @@
 .files-bar{
        text-align: center;
        height: auto;       
-       background-color: #F7F7F7;
+       background-color: white;
+       max-width: 100%;
+     border-bottom: 0.5px solid grey;
 }
+
 .file{
     display: inline-block; 
     border-radius: 5px;    
+    max-width: 100%;    
 }
 
-nav ul { 
+nav ul {     
+    max-width: 100%;   
     height: 40vh;
 }
-nav ul{overflow:hidden; overflow-y:scroll;}
+
+nav ul{overflow:hidden; word-wrap: break-word; overflow-y:scroll;}
 
 input[type=radio] + label{
     font-size: 0.8em;
@@ -67,12 +83,8 @@ input[type=radio]{
 
 
 input[type=radio]:checked + label{    
-    background-color: #eee;
+    background-color:#F9F9F9;
     color:  #0C458A;
-}
-
-.upload-c{
-
 }
 
 .upload-btn{

@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700,900');
 *{
     box-sizing: border-box;
 }
@@ -55,8 +56,8 @@
   }
 
 .app{
-    font-family: 'Open Sans', sans-serif;
-    min-height: inherit;
+  font-family: 'Roboto', sans-serif;
+      min-height: inherit;
 }
 
 [class*="col-"] {

@@ -4,6 +4,7 @@ import UploadFile from './UploadFile';
 import Table from './Table';
 import axios from 'axios';
 import Graph from './Graph';
+const feather = require('feather-icons')
 
 class ErrorAnalysis extends Component {
     constructor(props) {
@@ -25,8 +26,7 @@ class ErrorAnalysis extends Component {
         let lineArray = [];
         
         return axios.get(url).then((response) => {
-            lineArray = response.data;
-            
+            lineArray = response.data;            
             this.setState({
                 lines: lineArray,
                 dataLoaded: true,                
@@ -39,7 +39,6 @@ class ErrorAnalysis extends Component {
     componentDidMount() {
 
         let filesArr;
-        
         axios.get('/files.php').then((response) => {
             filesArr = response.data;
 
@@ -49,8 +48,10 @@ class ErrorAnalysis extends Component {
 
             if (filesArr.length === 0) {
                 console.log("Upload a File");
-            } else 
+            } else {
                 this.fetchFileData(filesArr[0].name);
+                feather.replace();                
+            }
             
         });
 
@@ -62,10 +63,10 @@ class ErrorAnalysis extends Component {
     }
 
 
-    handleDelete(e) {
-            e.preventDefault();
+    handleDelete(file, e) {
+        console.log(file);
             const data = new FormData();      
-            data.append( 'file', e.target.value );
+            data.append( 'file', file );
             axios.post('/deleteFile.php', data).then((response) => {
                 if (response.data) {
                     axios.get('/files.php').then((response) => {
@@ -87,12 +88,17 @@ class ErrorAnalysis extends Component {
             let fileArray = [];
             for (var i = 0; i < files.length; i++) {
                 if (i === 0) {
-                    fileArray.push(<li key={'rbtn' + i} className="rbtn"><input type="radio" value={files[i].name} onChange={this.handleChange} id={files[i].name} name="selector" defaultChecked={true}/><label htmlFor={files[i].name}>{files[i].name}</label><button className="delete" value={files[i].name} onClick={this.handleDelete} >Delete</button></li>);
+                    fileArray.push(<li key={'rbtn' + i} className="rbtn"><input type="radio" value={files[i].name} onChange={this.handleChange} id={files[i].name} name="selector" defaultChecked={true} /><label htmlFor={files[i].name}>{files[i].name}</label>
+                        <button className="delete-button" onClick={this.handleDelete.bind(this, files[i].name)}>    
+                    <i className="delete" data-feather="trash"></i></button></li>);
                 }
                 else
-                    fileArray.push(<li key={'rbtn' + i} className="rbtn"><input type="radio" value={files[i].name} onChange={this.handleChange} id={files[i].name} name="selector" /><label htmlFor={files[i].name}>{files[i].name}</label><button className="delete" value={files[i].name} onClick={this.handleDelete} >Delete</button></li>);
+                    fileArray.push(<li key={'rbtn' + i} className="rbtn"><input type="radio" value={files[i].name} onChange={this.handleChange} id={files[i].name} name="selector" /><label htmlFor={files[i].name}>{files[i].name}</label>
+                        
+                    <button className="delete-button" onClick={this.handleDelete.bind(this, files[i].name)}>
+                        <i className="delete" data-feather="trash"></i></button>        </li>);            
             }
-
+            
             return fileArray;
         }
 
@@ -233,7 +239,7 @@ class ErrorAnalysis extends Component {
                                 }} />
                                 
                                 <nav className="file">
-                                     <ul>       
+                                        <ul>       
                                             {this.renderFiles(this.state.files)}
                                         </ul>
                                 </nav>
