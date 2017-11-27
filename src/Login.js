@@ -8,7 +8,9 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      formvalues: {},      
+      formvalues: {}, 
+      loginErrorMsg: "",
+      registerErrorMsg:"",
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSignIn = this.handleSignIn.bind(this);
@@ -34,7 +36,13 @@ class Login extends Component {
     data.append('Username', this.state.formvalues['Username']);
     data.append('Password', this.state.formvalues['Password']);
     axios.post('/login.php', data).then((response) => {
-      this.props.onLogin(response.data);
+      if(response.data)
+        this.props.onLogin(response.data);
+      else {
+        this.setState({
+          loginErrorMsg: "Incorrect Username or password."
+        });
+      }
     });
 
   }
@@ -44,10 +52,20 @@ class Login extends Component {
     data.append('Username', this.state.formvalues['Username']);
     data.append('Password', this.state.formvalues['Password']);
     
-    axios.post('/register.php', data).then((response)=> {   
+    axios.post('/register.php', data).then((response) => {
       console.log(response.data);
-      if (response.data === 'empty') {
-        
+      if (response.data === 'Fields empty.' ){
+        this.setState(
+          {
+            registerErrorMsg: response.data + " Registration Failed."
+          }
+        );
+      } else if (response.data === 'User already exists.') {
+        this.setState(
+          {
+            registerErrorMsg: response.data + " Registration Failed."
+          }
+        );
       }
     });
   }
@@ -63,12 +81,12 @@ class Login extends Component {
         <div className="label">
           <div className="col-6 log-in">Register</div>
           <div className="col-6 log-in">Login</div>  
-</div>
+        </div>
+
+
         <div className="signin-container">
 
           <div className="col-6 register-container">
-         
-               
             <div className="login-box">
               <div className="icon-box">
                   <div>
@@ -78,6 +96,8 @@ class Login extends Component {
               
               <div className="form">
                 <div className="fc">  
+                <p className="error-msg">{this.state.registerErrorMsg}</p>  
+  
                 <div className="username-container">
                 
                   <div className="username-label">Username</div>
@@ -107,22 +127,24 @@ class Login extends Component {
 
               <div className="form">
                 <div className="fc">   
-            <div className="username-container">
-              <div className="username-label">Username</div>
-              <input className="username" type="text" name='Username' onChange={this.handleChange} autoComplete="on"/>
-            </div>
-            <div className="password-container">
-              <div className="password-label">Password</div>
-                <input className="password" type="password" name="Password" onChange={this.handleChange.bind(this)}/>
-            </div>
-            <div className = "buttons">
-            <div className="btn-c">
-                <div className="signin btn" name="Login" type="submit" onClick={this.handleSignIn}>Sign In</div>
-                    </div>
-                </div>    
-              </div>
-            </div>  
-          </div>
+                  <p className="error-msg">{this.state.loginErrorMsg}</p>  
+  
+                  <div className="username-container">
+                    <div className="username-label">Username</div>
+                    <input className="username" type="text" name='Username' onChange={this.handleChange} autoComplete="on"/>
+                  </div>
+                  <div className="password-container">
+                    <div className="password-label">Password</div>
+                      <input className="password" type="password" name="Password" onChange={this.handleChange.bind(this)}/>
+                  </div>
+                  <div className = "buttons">
+                  <div className="btn-c">
+                      <div className="signin btn" name="Login" type="submit" onClick={this.handleSignIn}>Sign In</div>
+                          </div>
+                  </div>    
+                </div>
+             </div>  
+           </div>
           </div>
           
         </div>  

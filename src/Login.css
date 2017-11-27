@@ -38,7 +38,11 @@
   justify-content: center;
   align-items: center;
 }
-
+.error-msg{
+  color: red;
+  font-size: 0.7em;
+  text-align: left;
+}
 .login-box {
   width: 100%;
   /* border: 1px solid red; */
@@ -64,7 +68,7 @@
   align-items: center;
   justify-content: center;
   /* border: 2px solid green; */
-
+  padding-top: 4%;
 }
 
 .fc{
