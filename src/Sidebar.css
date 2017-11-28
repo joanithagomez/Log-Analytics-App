@@ -1,5 +1,6 @@
 
 .side-c{
+    
     width: 100%;
     background-color:white;
 }
@@ -11,44 +12,24 @@
     cursor: pointer;
 }
 
-.tab-item {
-    /* display: inline-block; */
-    padding: 2%;    
-    float: left;
-    list-style: none;
-    transition: all 0.3s;
-}
 .tab-link:hover{
     background: #f9f9f9;
 }
 
 .tab-link{
-    padding: 1rem 3em;
+    padding: 1rem 1.5rem;
     float: left;
     list-style: none;
     transition: all 0.3s;
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 300;
     color: #666;
     stroke:#bbb;
+    border: 3px solid transparent;
 }
 
-
-.tab-item a {
-    text-decoration: none;
-    font-weight: 500;
-    color: #666;
-    stroke:#bbb;
-}
 
 .tab-link i{
     vertical-align: -3px;
     padding-right: .5rem;
-}
-
-.tab-item:active{
-    color: #24292e;
-    border:6px solid red ;
-    background: #f9f9f9;
-    
 }

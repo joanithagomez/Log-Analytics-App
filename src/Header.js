@@ -23,7 +23,8 @@ class Header extends Component{
         
         return(
             <div className="title-bar">
-                <div className="logo">
+                <p className="app-name">Log Analytics</p>    
+                {/* <div className="logo">
                         <svg viewBox="0 0 23 23" version="1.1" xmlns="http://www.w3.org/2000/svg">
             <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
                 <g id="Group">
@@ -34,7 +35,7 @@ class Header extends Component{
             </g>
         </svg>
 
-                </div>
+                </div> */}
                 <div className="header-links">
                       
                     <p className="un">Welcome {this.state.name}!</p>

@@ -12,7 +12,9 @@ class ErrorAnalysis extends Component {
             this.state = {
                 files: [],
                 lines: [],
-                dataLoaded: false
+                dataLoaded: false,
+                currentFile: '',
+                // msg:'',
             };
            
             this.handleChange = this.handleChange.bind(this);
@@ -29,7 +31,8 @@ class ErrorAnalysis extends Component {
             lineArray = response.data;            
             this.setState({
                 lines: lineArray,
-                dataLoaded: true,                
+                dataLoaded: true,
+                currentFile: value,
             });
         });
 
@@ -57,28 +60,44 @@ class ErrorAnalysis extends Component {
 
     }
 
+    componentDidUpdate() {        
+        feather.replace();
+    }
 
     handleChange(changeEvent) {
         this.fetchFileData(changeEvent.target.value);
+        this.setState({
+            currentFile: changeEvent.target.value
+        })
     }
 
 
     handleDelete(file, e) {
-        console.log(file);
             const data = new FormData();      
             data.append( 'file', file );
             axios.post('/deleteFile.php', data).then((response) => {
                 if (response.data) {
                     axios.get('/files.php').then((response) => {
                         let filesArr = response.data;
-            
+
+                        let prev_file = '';
+                        console.log(prev_file);
+                        if (filesArr.length !== 0) {
+                            prev_file = this.state.files[filesArr.length - 1].name;
+                            console.log("inside"+prev_file);
+                            
+                            this.fetchFileData(prev_file);
+                        }    
                         this.setState({
                             files: filesArr,
+                            currentFile: prev_file,
                         });
-                    });                          
+                        
+                    });  
+                    
                 }
                 else {
-                    console.log("Failed to delete");
+                    console.log( "Failed to delete" );
                 }
             });
         }
@@ -87,16 +106,9 @@ class ErrorAnalysis extends Component {
         renderFiles(files) {
             let fileArray = [];
             for (var i = 0; i < files.length; i++) {
-                if (i === 0) {
-                    fileArray.push(<li key={'rbtn' + i} className="rbtn"><input type="radio" value={files[i].name} onChange={this.handleChange} id={files[i].name} name="selector" defaultChecked={true} /><label htmlFor={files[i].name}>{files[i].name}</label>
-                        <button className="delete-button" onClick={this.handleDelete.bind(this, files[i].name)}>    
-                    <i className="delete" data-feather="trash"></i></button></li>);
-                }
-                else
-                    fileArray.push(<li key={'rbtn' + i} className="rbtn"><input type="radio" value={files[i].name} onChange={this.handleChange} id={files[i].name} name="selector" /><label htmlFor={files[i].name}>{files[i].name}</label>
-                        
-                    <button className="delete-button" onClick={this.handleDelete.bind(this, files[i].name)}>
-                        <i className="delete" data-feather="trash"></i></button>        </li>);            
+               
+                fileArray.push(<li key={'rbtn' + i} className="rbtn"><input type="radio" value={files[i].name} checked={this.state.currentFile === files[i].name} onChange={this.handleChange} id={files[i].name} name="selector" /><label htmlFor={files[i].name}>{files[i].name}<button className="delete-button" onClick={this.handleDelete.bind(this, files[i].name)}>
+                    <i className="delete" data-feather="trash"></i></button>   </label> </li>);            
             }
             
             return fileArray;
@@ -219,25 +231,38 @@ class ErrorAnalysis extends Component {
     
     
     render() {
-            
-            return (
-                <div className="container">                    
+        return (
+            <div className="container">                    
                    
-                    <div className=" col-12 sub-c">
+                <div className=" col-12 sub-c">
 
-                        <div className="col-2 left-container">
+                    <div className="col-2 left-container">
                             
-                            <div className="file-subc">                            
-                            <div className="files-bar">
-
-                            <UploadFile onUpload={(filename) => {
-                            let filenameArr = [{ name: filename }];
-                            let newArray = this.state.files.concat(filenameArr);
-                            this.setState({
-                                files: newArray
-                            })
-                                }} />
-                                
+                        <div className="file-subc">   
+                            <div className="ubtn">        
+                                <UploadFile onUpload={(filename) => {
+                                    let filenameArr = [{ name: filename }];
+                                    this.fetchFileData(filenameArr[0].name).then((response) => {
+                                        if (this.state.lines.length === 0) {
+                                            this.handleDelete(filename);
+                                            
+                                           console.log("Not a valid file. Upload failed.");
+                                        } else {
+                                            let newArray = this.state.files.concat(filenameArr);
+                                            this.setState({
+                                                files: newArray,
+                                                currentFile: filename,
+                                            });
+                                        }
+                                    });
+                                        
+                                   
+                                 }} />    
+                                </div> 
+                             
+                            
+                                <div className="files-bar">
+                                         
                                 <nav className="file">
                                         <ul>       
                                             {this.renderFiles(this.state.files)}
@@ -245,6 +270,8 @@ class ErrorAnalysis extends Component {
                                 </nav>
                             </div> 
                         </div>
+                        {/* <p className="msg">{this.state.msg}</p> */}
+
                     </div>    
                     <div className="col-9 right-container">
                         <div className="heading-c">
@@ -253,7 +280,7 @@ class ErrorAnalysis extends Component {
                         <div className="graph-c">
                             {(this.state.dataLoaded)?
                                 <Graph className="graph" dataset={this.graphData(this.state.lines)} />:
-                                <p>No data received</p>
+                                <p className = "error-text">No data received. Please upload a valid file.</p>
                             }    
                         </div>
                         

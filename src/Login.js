@@ -10,7 +10,7 @@ class Login extends Component {
     this.state = {
       formvalues: {}, 
       loginErrorMsg: "",
-      registerErrorMsg:"",
+      registerMsg:"",
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSignIn = this.handleSignIn.bind(this);
@@ -54,16 +54,16 @@ class Login extends Component {
     
     axios.post('/register.php', data).then((response) => {
       console.log(response.data);
-      if (response.data === 'Fields empty.' ){
+      if (response.data === "Registration Successfull!"){
         this.setState(
           {
-            registerErrorMsg: response.data + " Registration Failed."
+            registerMsg:"Registration Successfull! Please Log in."
           }
         );
-      } else if (response.data === 'User already exists.') {
+      } else {
         this.setState(
           {
-            registerErrorMsg: response.data + " Registration Failed."
+            registerMsg: " Registration Failed."
           }
         );
       }
@@ -72,7 +72,7 @@ class Login extends Component {
 
 
   render() {
-   
+    feather.replace();
     return (
       <div className="col-12 App">
         <header className="App-header">
@@ -96,7 +96,7 @@ class Login extends Component {
               
               <div className="form">
                 <div className="fc">  
-                <p className="error-msg">{this.state.registerErrorMsg}</p>  
+                <p className="error-msg">{this.state.registerMsg}</p>  
   
                 <div className="username-container">
                 
