@@ -1,8 +1,8 @@
 <?php session_start(); /* Starts the session */
       
         // Checks if fields are empty
-        if ($_POST['Username'] == "" or $_POST['Password'] == "") {
-            echo "empty";
+        if (($_POST['Username'] == "" or $_POST['Password'] == "") or ($_POST['Username'] == 'undefined' or $_POST['Password'] == 'undefined')){
+            echo "Fields empty.";
         }
         else {
             // Assigns User/pass to a variable
@@ -32,10 +32,9 @@
                     $data = file_get_contents($_SERVER['DOCUMENT_ROOT'] ."/users.txt");
                     $data .= $Username . ":" . $Password . "\n";
                     file_put_contents($_SERVER['DOCUMENT_ROOT'] ."/users.txt", $data);
-                    echo "User added!";
                     // Create directory for uploads for user
                     mkdir($_SERVER['DOCUMENT_ROOT'] . "/uploads/" . $Username, 0700);
-
+                    echo "Registration Successfull!";
                 }
 
             }

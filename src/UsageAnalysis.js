@@ -40,25 +40,26 @@ class UsageAnalysis extends Component {
 
 
     componentDidMount() {
-
-        let filesArr;
-        axios.get('/files.php').then((response) => {
-            filesArr = response.data;
-
-            this.setState({
-                files: filesArr,
-            });
-
-            if (filesArr.length === 0) {
-                console.log("Upload a File");
-            } else {
-                this.fetchFileData(filesArr[0].name);
-                feather.replace();                
-            }
-            
-        });
-
+        
+                let filesArr;
+                axios.get('/files.php').then((response) => {
+                    filesArr = response.data;
+        
+                    this.setState({
+                        files: filesArr,
+                    });
+        
+                    if (filesArr.length === 0) {
+                        console.log("Upload a File");
+                    } else {
+                        this.fetchFileData(filesArr[0].name);
+                        feather.replace();                
+                    }
+                    
+                });
+        
     }
+    
 
     componentDidUpdate() {        
         feather.replace();
@@ -70,7 +71,6 @@ class UsageAnalysis extends Component {
             currentFile: changeEvent.target.value
         })
     }
-
     handleDelete(file, e) {
         const data = new FormData();      
         data.append( 'file', file );
@@ -79,18 +79,29 @@ class UsageAnalysis extends Component {
                 axios.get('/files.php').then((response) => {
                     let filesArr = response.data;
 
+                    // this.setState((pre) => {
+                        
+                    // });
                     let prev_file = '';
                     console.log(prev_file);
                     if (filesArr.length !== 0) {
-                        prev_file = this.state.files[filesArr.length - 1].name;
-                        console.log("inside"+prev_file);
+                        prev_file = filesArr[filesArr.length - 1].name;
                         
-                        this.fetchFileData(prev_file);
-                    }    
-                    this.setState({
-                        files: filesArr,
-                        currentFile: prev_file,
-                    });
+                        this.fetchFileData(prev_file).then((response) => {
+                            this.setState({
+                                files: filesArr,
+                                currentFile: prev_file
+                            });
+                         });
+                    } else {
+                        console.log("length  === 0 ");
+                        
+                        this.setState({
+                            files: filesArr,
+                            currentFile: "",
+                            dataLoaded: false,
+                        });
+                    } 
                     
                 });  
                 
@@ -100,7 +111,6 @@ class UsageAnalysis extends Component {
             }
         });
     }
-
 
        renderFiles(files) {
             let fileArray = [];

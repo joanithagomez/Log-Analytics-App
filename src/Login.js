@@ -63,7 +63,7 @@ class Login extends Component {
       } else {
         this.setState(
           {
-            registerMsg: " Registration Failed."
+            registerMsg: "User already exists. Registration Failed."
           }
         );
       }
@@ -76,7 +76,7 @@ class Login extends Component {
     return (
       <div className="col-12 App">
         <header className="App-header">
-          <h1 className="App-title">Log App</h1>
+          <h1 className="App-title">Log Analytics</h1>
         </header>
         <div className="label">
           <div className="col-6 log-in">Register</div>

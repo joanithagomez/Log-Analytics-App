@@ -80,18 +80,29 @@ class ErrorAnalysis extends Component {
                     axios.get('/files.php').then((response) => {
                         let filesArr = response.data;
 
+                        // this.setState((pre) => {
+                            
+                        // });
                         let prev_file = '';
                         console.log(prev_file);
                         if (filesArr.length !== 0) {
-                            prev_file = this.state.files[filesArr.length - 1].name;
-                            console.log("inside"+prev_file);
+                            prev_file = filesArr[filesArr.length - 1].name;
                             
-                            this.fetchFileData(prev_file);
-                        }    
-                        this.setState({
-                            files: filesArr,
-                            currentFile: prev_file,
-                        });
+                            this.fetchFileData(prev_file).then((response) => {
+                                this.setState({
+                                    files: filesArr,
+                                    currentFile: prev_file
+                                });
+                             });
+                        } else {
+                            console.log("length  === 0 ");
+                            
+                            this.setState({
+                                files: filesArr,
+                                currentFile: "",
+                                dataLoaded: false,
+                            });
+                        } 
                         
                     });  
                     

@@ -22,7 +22,7 @@ class Graph extends Component {
                 />
             );
         } else {
-            return <p>Choose a valid file</p>
+            return <p className="error-text">No data to show. Choose another file.</p>
         }
      
         
