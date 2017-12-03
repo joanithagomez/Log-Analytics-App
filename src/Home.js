@@ -20,7 +20,6 @@ class Home extends Component {
             <Switch>
 
                 <Route path='/' render={() => {
-         
                         return <App loggedIn={this.state.loggedIn} onLogin={(response) => {
                             this.setState({
                                 loggedIn: response
@@ -29,13 +28,13 @@ class Home extends Component {
                             this.setState({
                                 loggedIn: response
                             });
-                        }} onSession={(response) => {
+                            }} onSession={(response) => {
                             this.setState({
                                 loggedIn: response
                             });
                         }} />
                                     
-                }    
+                    }    
                } />
             </Switch>);
     }
